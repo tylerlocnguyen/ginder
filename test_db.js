@@ -65,7 +65,7 @@ class Database{ //class for the actual database for easy access in other parts o
             //console.log('Lines:', lines);  this gives us the whole fucking thing
             //1 : are the names
             //2 : are the description
-            for (let i = 1; i <= 5 && i < lines.length; i++) {
+            for (let i = 1; i <= 10 && i < lines.length; i++) {
                 const row = lines[i].split(',').map(item => item.trim());
                 //console.log('Row:', row[2]); //the rows just use better formatted shit
                 names.add(row[1]);
@@ -113,13 +113,12 @@ async function main(){ //main function for testing purposes
        //}
        //module.exports = name_description;
        console.log("DONE");
-       module.exports = {names, description};
-       
-       
+       return{names, description};
     }
  
     catch(error){
         console.error("erm", error);
+        throw error;
     }
     finally{
         await database.close();
@@ -131,4 +130,4 @@ async function main(){ //main function for testing purposes
 //console.log(names);
   //  console.log(description);
  // Export the Database class
-main();
+module.exports = main;
