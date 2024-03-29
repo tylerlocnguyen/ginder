@@ -1,73 +1,25 @@
-const { MongoClient } = require("mongodb");
+const express = require('express');
+const database = require('./database'); // Path to your database.js file
 
-//constants
-const uri = "mongodb+srv://tylerlocnguyen:YISO1kXrQhXFyyst@ginder.7z44ilc.mongodb.net/?retryWrites=true&w=majority&appName=Ginder";
-const dbName = "Ginder"
-const collectionName = "organizations";
+const app = express();
+const port = 5500;
 
+app.use(express.json()); // for parsing application/json
 
-
-class Database{ //class for the actual database for easy access in other parts of the project
-    constructor(uri, dbName, collectionName){
-        this.uri = uri;
-        this.dbName = dbName;
-        this.client = new MongoClient(uri);
-        this.collection = null;
-        this.db = null;
-    }
-
-
-    async connect(){ //connect to the database and establishes the collection
-        try{
-            await this.client.connect();
-            console.log("Connected!");
-            this.db = this.client.db(this.dbName);
-            this.collection = this.db.collection(collectionName);
-    }
-        catch(error){
-            console.error("did not connect to mongodb", error);
+// Define routes and perform MongoDB operations here
+database.ready.then(() => {
+    app.get('/search', async (req, res) => {
+        try {
+            const query = new RegExp(req.query.q, 'i'); // 'i' makes it case insensitive
+            const results = await database.collection.find({ OrganizationName: query }).toArray();
+            console.log(results);
+            res.json(results);
+        } catch (error) {
+            console.error('Error in find operation:', error);
+            res.status(500).json({ error: 'An error occurred while searching the database' });
         }
-    }
-
-
-    async close(){ //closes the connection after *VERY IMPORTANT*
-        try{
-            await this.client.close();
-            console.log("connection closed");
-        }
-        catch(error){
-            console.error("could not close", error);
-        }
-    }
-
-    async getbyName(name){ //queries the database by name or the org
-        try{
-            const query = {OrganizationName: name};
-            const organization = await this.collection.findOne(query);
-
-            console.log(organization); // rn just prints it but we can do whatever we want
-        }
-        catch(error){
-            console.error("could not query", error);
-        }
-    }
-}
-
-
-
-async function main(){ //main function for testing purposes
-    const database = new Database(uri, dbName, collectionName);
-    try{
-        await database.connect();
-        await database.getbyName("Vietnamese Student Organization");
-    }
-    catch(error){
-        console.error("erm", error);
-    }
-    finally{
-        await database.close();
-    }
-
-}
-
-main();
+    });
+    });
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
