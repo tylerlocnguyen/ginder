@@ -5,7 +5,7 @@ const SwipeFeature = ({ organizations }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [startX, setStartX] = useState(null);
 
-  // Event listener for arrow key navigation
+  // Event listener for arrow keys
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'ArrowLeft') {
