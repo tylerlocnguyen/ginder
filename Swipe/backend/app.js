@@ -70,4 +70,6 @@ async function main(){ //main function for testing purposes
 
 }
 
+module.exports = Database; // Export the Database class
+
 main();
