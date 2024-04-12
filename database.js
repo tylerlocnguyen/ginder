@@ -13,7 +13,8 @@ class Database{ //class for the actual database for easy access in other parts o
         this.dbName = dbName;
         this.client = new MongoClient(uri);
         this.collection = null;
-        this.db = null;this.ready = this.connect();
+        this.db = null;
+        this.ready = this.connect();
     }
 
 
@@ -53,7 +54,37 @@ class Database{ //class for the actual database for easy access in other parts o
         }
     }
 
+    async updateDocuments(identifier, newFieldData) {
+        try {
+            const filter = { id: identifier }; // Filter to find the document by identifier
+            const documentToUpdate = await this.collection.findOne(filter);
+    
+            if (!documentToUpdate) {
+                console.log(`No document found with id ${identifier}`);
+                return;
+            }
+    
+            // Update the document by adding or updating the new field
+            const updatedDocument = {
+                ...documentToUpdate,
+                newField: newFieldData // Assuming newFieldData is the value to be added/updated
+            };
+    
+            // Update the document in the collection
+            const updateResult = await this.collection.updateOne(filter, { $set: updatedDocument });
+    
+            if (updateResult.modifiedCount > 0) {
+                console.log(`Updated document with id ${identifier}`);
+            } else {
+                console.log(`Document with id ${identifier} not updated`);
+            }
+        } catch (error) {
+            console.error('Error updating document:', error);
+        }
+    }
 }
+
+
 
 
 

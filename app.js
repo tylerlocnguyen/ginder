@@ -1,16 +1,19 @@
 const express = require('express');
-const database = require('./database'); // Path to your database.js file
+const cors = require('cors');
+const database = require('./database');
+
 
 const app = express();
 const port = 5500;
 
-app.use(express.json()); // for parsing application/json
+app.use(cors());
+app.use(express.json());
 
-// Define routes and perform MongoDB operations here
+
 database.ready.then(() => {
     app.get('/search', async (req, res) => {
         try {
-            const query = new RegExp(req.query.q, 'i'); // 'i' makes it case insensitive
+            const query = new RegExp(req.query.q, 'i'); 
             const results = await database.collection.find({ OrganizationName: query }).toArray();
             console.log(results);
             res.json(results);
