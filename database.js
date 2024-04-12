@@ -56,8 +56,8 @@ class Database{ //class for the actual database for easy access in other parts o
 
     async updateDocuments(identifier, newFieldData) {
         try {
-            const filter = { id: identifier }; // Filter to find the document by identifier
-            const documentToUpdate = await this.collection.findOne(filter);
+            const query = {OrganizationName: name}; // Filter to find the document by identifier
+            const documentToUpdate = await this.collection.findOne(query);
     
             if (!documentToUpdate) {
                 console.log(`No document found with id ${identifier}`);
