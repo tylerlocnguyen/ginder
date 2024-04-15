@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+const { mainModule } = require("process");
 
 //constants
 const uri = "mongodb+srv://tylerlocnguyen:YISO1kXrQhXFyyst@ginder.7z44ilc.mongodb.net/?retryWrites=true&w=majority&appName=Ginder";
@@ -56,39 +57,48 @@ class Database{ //class for the actual database for easy access in other parts o
 
     async updateDocuments(name, newFieldData) {
         try {
-            const query = {OrganizationName: name}; // Filter to find the document by identifier
-            const documentToUpdate = await this.collection.findOne(query);
-    
-            if (!documentToUpdate) {
-                console.log(`No document found with name ${name}`);
-                return;
+            if (!this.collection) {
+                throw new Error("MongoDB collection is not initialized");
             }
     
-            // Update the document by adding or updating the new field
-            const updatedDocument = {
-                ...documentToUpdate,
-                Tags: newFieldData // Assuming newFieldData is the value to be added/updated
-            };
+            const query = { OrganizationName: name };
     
-            // Update the document in the collection
-            const updateResult = await this.collection.updateOne(filter, { $set: updatedDocument });
+            // Use $set to update the 'Tags' field and create it if it doesn't exist
+            const updateResult = await this.collection.updateOne(
+                query,
+                { $set: { Tags: newFieldData } },
+                { upsert: true } // Create the document if it doesn't exist
+            );
     
-            if (updateResult.modifiedCount > 0) {
-                console.log(`Updated document with name ${name}`);
+            if (updateResult.matchedCount > 0 || updateResult.modifiedCount > 0 || updateResult.upsertedCount > 0) {
+                console.log(`Updated or created document with name '${name}'`);
             } else {
-                console.log(`Document with name ${name} not updated`);
+                console.log(`Document with name '${name}' not updated or created`);
             }
+    
+            console.log("Update Result:", updateResult);
         } catch (error) {
             console.error('Error updating document:', error);
         }
     }
-}
+}    
 
 
 
 
 
 const database = new Database(uri, dbName, collectionName);
+async function performDatabaseOperations() {
+    try {
+        await database.ready; // Wait for the database to connect
+        await database.updateDocuments("360BHM", ['Cultural', 'Fine Arts', 'Social and Global Change']);
+    } catch (error) {
+        console.error('Error performing database operations:', error);
+    } finally {
+        await database.close(); // Close the database connection after operations
+    }
+}
+performDatabaseOperations();
 module.exports = database;
 
 
