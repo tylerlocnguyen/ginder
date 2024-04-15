@@ -60,23 +60,23 @@ class Database{ //class for the actual database for easy access in other parts o
             const documentToUpdate = await this.collection.findOne(query);
     
             if (!documentToUpdate) {
-                console.log(`No document found with id ${identifier}`);
+                console.log(`No document found with name ${name}`);
                 return;
             }
     
             // Update the document by adding or updating the new field
             const updatedDocument = {
                 ...documentToUpdate,
-                newField: newFieldData // Assuming newFieldData is the value to be added/updated
+                Tags: newFieldData // Assuming newFieldData is the value to be added/updated
             };
     
             // Update the document in the collection
             const updateResult = await this.collection.updateOne(filter, { $set: updatedDocument });
     
             if (updateResult.modifiedCount > 0) {
-                console.log(`Updated document with id ${identifier}`);
+                console.log(`Updated document with id ${name}`);
             } else {
-                console.log(`Document with id ${identifier} not updated`);
+                console.log(`Document with id ${name} not updated`);
             }
         } catch (error) {
             console.error('Error updating document:', error);
