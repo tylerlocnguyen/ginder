@@ -74,9 +74,9 @@ class Database{ //class for the actual database for easy access in other parts o
             const updateResult = await this.collection.updateOne(filter, { $set: updatedDocument });
     
             if (updateResult.modifiedCount > 0) {
-                console.log(`Updated document with id ${name}`);
+                console.log(`Updated document with name ${name}`);
             } else {
-                console.log(`Document with id ${name} not updated`);
+                console.log(`Document with name ${name} not updated`);
             }
         } catch (error) {
             console.error('Error updating document:', error);
