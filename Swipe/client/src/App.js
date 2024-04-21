@@ -7,6 +7,7 @@ function App() {
   const [organizations, setOrganizations] = useState([]); // State to store organizations
   const [matches, setMatches] = useState([]); // State to store matched organizations
   const [nonMatches, setNonMatches] = useState([]); // State to store non-matched organizations
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // Fetch organizations from the backend when the component mounts
   useEffect(() => {
@@ -23,15 +24,25 @@ function App() {
   }, []);
 
   const handleSwipeLeft = () => {
-    const currentOrg = organizations.find((_, index) => index === 0);
-    setNonMatches((prevNonMatches) => [...prevNonMatches, currentOrg]);
-    setOrganizations((prevOrgs) => prevOrgs.slice(1));
+    const currentOrg = organizations[activeIndex];
+    
+    // Check if the organization is already in matches
+    if (!matches.some(org => org._id === currentOrg._id)) {
+      setNonMatches((prevNonMatches) => [...prevNonMatches, currentOrg]);
+    }
+    
+    setOrganizations((prevOrgs) => prevOrgs.filter((_, index) => index !== activeIndex));
   };
 
   const handleSwipeRight = () => {
-    const currentOrg = organizations.find((_, index) => index === 0);
-    setMatches((prevMatches) => [...prevMatches, currentOrg]);
-    setOrganizations((prevOrgs) => prevOrgs.slice(1));
+    const currentOrg = organizations[activeIndex];
+    
+    // Check if the organization is already in non-matches
+    if (!nonMatches.some(org => org._id === currentOrg._id)) {
+      setMatches((prevMatches) => [...prevMatches, currentOrg]);
+    }
+
+    setOrganizations((prevOrgs) => prevOrgs.filter((_, index) => index !== activeIndex));
   };
 
   return (
@@ -46,6 +57,8 @@ function App() {
         {tab === 'swipe' && (
           <SwipeFeature
             organizations={organizations}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
             onSwipeLeft={handleSwipeLeft}
             onSwipeRight={handleSwipeRight}
           />
