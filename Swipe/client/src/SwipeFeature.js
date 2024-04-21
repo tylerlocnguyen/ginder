@@ -3,7 +3,6 @@ import './SwipeFeature.css'; // Import CSS for styling
 
 const SwipeFeature = ({ organizations }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [startX, setStartX] = useState(null);
 
   // Event listener for arrow keys
   useEffect(() => {
@@ -23,27 +22,6 @@ const SwipeFeature = ({ organizations }) => {
     };
   }, []); // Empty dependency array ensures the effect runs only once
 
-  const handleTouchStart = (event) => {
-    setStartX(event.touches[0].clientX);
-  };
-
-  const handleTouchMove = (event) => {
-    if (startX === null) return;
-
-    const currentX = event.touches[0].clientX;
-    const diff = currentX - startX;
-
-    // Swipe threshold to prevent accidental swipes
-    if (Math.abs(diff) > 50) {
-      if (diff < 0) {
-        handleSwipeRight();
-      } else {
-        handleSwipeLeft();
-      }
-      setStartX(null);
-    }
-  };
-
   const handleSwipeLeft = () => {
     setActiveIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
@@ -53,11 +31,11 @@ const SwipeFeature = ({ organizations }) => {
   };
 
   return (
-    <div className="swipe-container" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+    <div className="swipe-container">
       {organizations.map((org, index) => (
-        <div key={org.id} className={`card ${index === activeIndex ? 'active' : ''}`}>
-          <h2>{org.name}</h2>
-          <p>{org.description}</p>
+        <div key={org._id} className={`card ${index === activeIndex ? 'active' : ''}`}>
+          <h2>{org.OrganizationName}</h2>
+          <p>{org.OrganizationDescription}</p>
         </div>
       ))}
     </div>

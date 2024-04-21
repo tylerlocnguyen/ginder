@@ -1,26 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SwipeFeature from './SwipeFeature';
+import axios from 'axios'; // Import axios for HTTP requests
 
 function App() {
   const [tab, setTab] = useState('swipe'); // State to track active tab
+  const [organizations, setOrganizations] = useState([]); // State to store organizations
+  const [matches, setMatches] = useState([]); // State to store matched organizations
+  const [nonMatches, setNonMatches] = useState([]); // State to store non-matched organizations
 
-  // Dummy organization data for testing
-  const organizations = [
-    { id: 1, name: 'Organization 1', description: 'Description 1' },
-    { id: 2, name: 'Organization 2', description: 'Description 2' },
-    // Add more organizations as needed
-  ];
+  // Fetch organizations from the backend when the component mounts
+  useEffect(() => {
+    const fetchOrganizations = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/organizations');
+        setOrganizations(response.data);
+      } catch (error) {
+        console.error('Error fetching organizations:', error);
+      }
+    };
 
-  // Dummy data for matches and non-matches
-  const matches = [
-    { id: 1, name: 'Match 1', description: 'Description 1' },
-    { id: 2, name: 'Match 2', description: 'Description 2' },
-  ];
+    fetchOrganizations();
+  }, []);
 
-  const nonMatches = [
-    { id: 3, name: 'Non-Match 1', description: 'Description 3' },
-    { id: 4, name: 'Non-Match 2', description: 'Description 4' },
-  ];
+  const handleSwipeLeft = () => {
+    const currentOrg = organizations.find((_, index) => index === 0);
+    setNonMatches((prevNonMatches) => [...prevNonMatches, currentOrg]);
+    setOrganizations((prevOrgs) => prevOrgs.slice(1));
+  };
+
+  const handleSwipeRight = () => {
+    const currentOrg = organizations.find((_, index) => index === 0);
+    setMatches((prevMatches) => [...prevMatches, currentOrg]);
+    setOrganizations((prevOrgs) => prevOrgs.slice(1));
+  };
 
   return (
     <div className="App">
@@ -31,14 +43,19 @@ function App() {
           <button onClick={() => setTab('matches')}>Matches</button>
           <button onClick={() => setTab('nonMatches')}>Non-Matches</button>
         </div>
-        {tab === 'swipe' && <SwipeFeature organizations={organizations} />}
+        {tab === 'swipe' && (
+          <SwipeFeature
+            organizations={organizations}
+            onSwipeLeft={handleSwipeLeft}
+            onSwipeRight={handleSwipeRight}
+          />
+        )}
         {tab === 'matches' && (
           <div>
             <h2>Matches</h2>
             {matches.map((match) => (
-              <div key={match.id}>
-                <p>{match.name}</p>
-                <p>{match.description}</p>
+              <div key={match._id}>
+                <p>{match.OrganizationName}</p>
               </div>
             ))}
           </div>
@@ -47,9 +64,8 @@ function App() {
           <div>
             <h2>Non-Matches</h2>
             {nonMatches.map((nonMatch) => (
-              <div key={nonMatch.id}>
-                <p>{nonMatch.name}</p>
-                <p>{nonMatch.description}</p>
+              <div key={nonMatch._id}>
+                <p>{nonMatch.OrganizationName}</p>
               </div>
             ))}
           </div>
