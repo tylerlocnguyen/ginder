@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './SwipeFeature.css'; // Import CSS for styling
 
-const SwipeFeature = ({ organizations }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
+const SwipeFeature = ({ organizations, activeIndex, setActiveIndex, onSwipeLeft, onSwipeRight }) => {
   // Event listener for arrow keys
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'ArrowLeft') {
-        handleSwipeLeft();
+        onSwipeLeft();
       } else if (event.key === 'ArrowRight') {
-        handleSwipeRight();
+        onSwipeRight();
       }
     };
 
@@ -20,15 +18,7 @@ const SwipeFeature = ({ organizations }) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []); // Empty dependency array ensures the effect runs only once
-
-  const handleSwipeLeft = () => {
-    setActiveIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-  };
-
-  const handleSwipeRight = () => {
-    setActiveIndex((prevIndex) => Math.min(prevIndex + 1, organizations.length - 1));
-  };
+  }, [onSwipeLeft, onSwipeRight]);
 
   return (
     <div className="swipe-container">
