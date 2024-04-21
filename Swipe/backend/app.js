@@ -39,23 +39,21 @@ class Database{ //class for the actual database for easy access in other parts o
             console.error("could not close", error);
         }
     }
-
-    async getbyName(name){ //queries the database by name or the org
-        try{
-            const query = {OrganizationName: name};
-            const organization = await this.collection.findOne(query);
-
-            console.log(organization); // rn just prints it but we can do whatever we want
-        }
-        catch(error){
+    //replaced getByName with this
+    async getAllOrganizations() {
+        try {
+            const organizations = await this.collection.find().toArray();
+            return organizations;
+        } catch (error) {
             console.error("could not query", error);
+            return [];
         }
     }
 }
 
 
 
-async function main(){ //main function for testing purposes
+/*async function main(){ //main function for testing purposes
     const database = new Database(uri, dbName, collectionName);
     try{
         await database.connect();
@@ -68,8 +66,8 @@ async function main(){ //main function for testing purposes
         await database.close();
     }
 
-}
+}*/
 
 module.exports = Database; // Export the Database class
 
-main();
+//main();
