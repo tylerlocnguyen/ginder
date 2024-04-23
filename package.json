@@ -23,13 +23,18 @@
   },
   "homepage": "https://github.com/AvaVellozzi/ginder#readme",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "express": "^4.18.3",
+    "firebase": "^10.11.0",
     "jquery-touchswipe": "^1.6.19",
     "mongodb": "^6.5.0",
+    "react-bootstrap": "^2.10.2",
     "react-hook-form": "^7.51.0",
+    "react-router-dom": "^6.23.0",
     "react-swipeable": "^7.0.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "concurrently": "^6.3.0"
   }
 }
