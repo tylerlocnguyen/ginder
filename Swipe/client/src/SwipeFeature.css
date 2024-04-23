@@ -17,6 +17,7 @@
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   display: none; /* Initially hide the card */
+  color: #282c34;
 }
 
 .card.active {
