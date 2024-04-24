@@ -64,8 +64,8 @@ class Database{ //class for the actual database for easy access in other parts o
 
     async getbyInterest(tag){ 
         try{
-            //TODO- Maybe pass in multiple tags instead of 1-1
-            const query = await this.collection.find({ Tags: tag }).toArray();
+            //Stack Overflow clutched this up
+            const query = await this.collection.find({ Tags: {$in : tag} }).toArray();
             
             console.log(query); 
         }
@@ -81,12 +81,12 @@ class Database{ //class for the actual database for easy access in other parts o
             const lines = data.split('\n');
 
             
-            //console.log('Lines:', lines);  this gives us the whole fucking thing
+            //console.log('Lines:', lines);  
             //1 : are the names
             //2 : are the description
             for (let i = 0; i < lines.length; i++) {
                 const row = lines[i].split(',').map(item => item.trim());
-                //console.log('Row:', row[2]); //the rows just use better formatted shit
+                //console.log('Row:', row[2]); //the rows just use better formatted 
                 names.add(row[1]);
                 description.add(row[2]);
             }
@@ -125,9 +125,12 @@ class Database{ //class for the actual database for easy access in other parts o
 async function main(){ //main function for testing purposes
     
     const database = new Database(uri, dbName, collectionName);
+    //Plug in the list from what Ava is working on a pass it into getByInterest(tag)
+    const theme = ["Engineering","Professional/Career"];
     try{
         await database.connect(); //Make sure that the database is always connected first
-        await database.getbyInterest("Engineering");  //Im just hard coding the name for testing
+        await database.getbyInterest(theme);
+
         
         console.log("DONE");
     } catch(error){
