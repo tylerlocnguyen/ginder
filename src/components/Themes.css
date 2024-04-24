@@ -1,0 +1,43 @@
+/*Holds the information on how to display all of the themes*/
+.Themes {
+  text-align: center;
+}
+
+.Themes-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Themes-logo {
+    animation: Themes-logo-spin infinite 20s linear;
+  }
+}
+
+.Themes-header {
+  background-color: #e6f7ec;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  font-size: calc(12px + 2vmin);
+  color: #333;
+}
+
+body{
+  background-color: #e6f7ec;
+}
+
+.Themes-link {
+  color: #61dafb;
+}
+
+@keyframes Themes-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

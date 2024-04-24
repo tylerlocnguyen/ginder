@@ -1,0 +1,16 @@
+/*Containts the information on each specific club card*/
+.card {
+    width: 300px; /* Set the width of the card */
+    height: 400px; /* Set the height of the card */
+    padding: 20px;
+    background-color: #f0f0f0; /* Background color of the card */
+    border: 1px solid #ccc; /* Border around the card */
+    border-radius: 8px; /* Border radius to make the edges rounded */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a slight elevation effect */
+    overflow: hidden; /* Hide overflowing content */
+    
+     /* Center the card horizontally and vertically */
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}

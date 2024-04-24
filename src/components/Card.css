@@ -1,0 +1,28 @@
+/*Holds information about how the card will be displayed*/
+.card {
+    width: 600px;
+    height: 600px;
+    padding: 20px;
+    background-color: #e6f7ec; /* Moss green background color */
+    border: 1px solid #a8d5ba; /* Lighter green border */
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+body{
+    background-color: #e6f7ec;
+  }
+  
+.card h2,
+.card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333; /* Dark text color */
+}
