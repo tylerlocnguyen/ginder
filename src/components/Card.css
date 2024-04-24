@@ -1,14 +1,12 @@
 .card {
-    width: 600px; /* Increased width */
-    height: 600px; /* Increased height */
+    width: 600px;
+    height: 600px;
     padding: 20px;
-    background-color: #f0f0f0; /* Background color of the card */
-    border: 1px solid #ccc; /* Border around the card */
-    border-radius: 16px; /* Increased border radius for a more rounded square shape */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a slight elevation effect */
-    overflow: hidden; /* Hide overflowing content */
-
-    /* Center the card content vertically and horizontally */
+    background-color: #e6f7ec; /* Moss green background color */
+    border: 1px solid #a8d5ba; /* Lighter green border */
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,9 +15,10 @@
 
 .card h2,
 .card p {
-    font-size: 1rem; /* Adjust font size as needed */
-    line-height: 1.5; /* Adjust line height as needed */
+    font-size: 1.2rem;
+    line-height: 1.6;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #333; /* Dark text color */
 }

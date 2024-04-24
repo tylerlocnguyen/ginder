@@ -14,14 +14,14 @@
 }
 
 .Themes-header {
-  background-color: white;
+  background-color: #e6f7ec;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
+  font-size: calc(12px + 2vmin);
+  color: #333;
 }
 
 .Themes-link {

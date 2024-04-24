@@ -68,7 +68,7 @@ function Themes() {
   };
 
   return (
-    <span className="Themes">
+    <div className="Themes">
       <header className="Themes-header">
         <h1>Organization Swiper</h1>
         <Search />
@@ -112,7 +112,7 @@ function Themes() {
           </div>
         )}
       </header>
-    </span>
+    </div>
   );
 }
 
