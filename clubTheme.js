@@ -9,16 +9,10 @@ const uri = "mongodb+srv://tylerlocnguyen:YISO1kXrQhXFyyst@ginder.7z44ilc.mongod
 const dbName = "Ginder"
 const collectionName = "organizations";
 
-
-
-
-
-
 async function main() {
     const database = new Database(uri, dbName, collectionName);
     await database.connect();
- 
-    //const {names, description} = await database.getSecondColumnFirstRow('UFclubs.csv');
+
     const {names, description} = await database.getSecondColumnFirstRow('newClubThemes.txt');
     const array1 = Array.from(names);
     const array2 = Array.from(description);
@@ -72,10 +66,7 @@ const testTheme = `education, entertainment`;
 const meep = testTheme.trim();
 const themesString = themes.trim(); 
 
-
-
-  
-    for (let i = 0; i < 5; i++) {
+    for (let i = 962; i <= 1078; i++) {
         //console.log(array1[i], array2[i]);
         orgs += `Club Name: ${array1[i]}\n`;
         des += `Club Description: ${array2[i]}\n`
@@ -99,20 +90,14 @@ const themesString = themes.trim();
     let regex_comman = /\$([^$]*)\,/g;
     let regex_themes = response.match(/\$([^$]*)\$/g).map(match => match.slice(1, -1));
     let formattedThemes = regex_themes.map(theme => theme.split(','));
-    //for (let i = 0; i < formattedThemes.length; i++) {
-      //  database.updateDocuments(i,formattedThemes[0]);
-    //}
-    console.log("BELOW")
-    database.updateDocuments('360BHM',[ 'Cultural', ' Fine Arts', ' Social and Global Change' ]);
+
+    console.log(array1[20]);
+    console.log(formattedThemes[0]);    
     
-
-
-    console.log(formattedThemes);
-    database.close();
-
+    for (let i = 962; i <= 1078; i++) {
+       await database.updateDocuments(array1[i], formattedThemes[i-962]);
+    }
+    await database.close();
 }
-
-
-
 main();
 
