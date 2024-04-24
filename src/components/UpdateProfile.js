@@ -3,8 +3,7 @@ import {Form, Button, Card, Alert} from 'react-bootstrap'
 import {useAuth} from '../contexts/AuthContext'
 import {Link, useNavigate} from 'react-router-dom'
 
-//Update this one
-
+//Contains the page to update the profile and to communicate with firebase to do so
 export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()

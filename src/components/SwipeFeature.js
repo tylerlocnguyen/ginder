@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './SwipeFeature.css';
 
+//Creates the swipe feature page and checks if the user swipes left or right and then performs the correct actions from there
 const SwipeFeature = ({ organizations, activeIndex, onSwipeLeft, onSwipeRight }) => {
   useEffect(() => {
     const handleKeyDown = (event) => {

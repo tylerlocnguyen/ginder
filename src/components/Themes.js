@@ -6,6 +6,7 @@ import './Themes.css';
 import Search from './Search';
 import logo from '../public/logo.png';
 
+//Displays all of the themes on the page
 function Themes() {
   const [tab, setTab] = useState('swipe'); // State to track active tab
   const [organizations, setOrganizations] = useState([]); // State to store organizations

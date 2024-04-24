@@ -1,6 +1,7 @@
 // ThemeSelection.js
 import React, { useState } from 'react';
 
+//Containes all of the themes and logs if any of them are selected by the user
 const themes = [
     'Nursing',
     'Agricultural and Life Sciences',

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './SwipeFeature.css'; // Import CSS for styling
 
+//Sets up the react application for the swipe feature and keeps track if swipes are made
 const SwipeFeature = ({ organizations, activeIndex, setActiveIndex, onSwipeLeft, onSwipeRight }) => {
   // Event listener for arrow keys
   useEffect(() => {

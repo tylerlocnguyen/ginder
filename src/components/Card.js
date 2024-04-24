@@ -1,6 +1,7 @@
 import React from 'react';
 import './Card.css'; 
 
+//Holds the react code to display card with name, description, and if active
 const Card = ({ name, description, isActive }) => {
   return (
     <div className={`card ${isActive ? 'active' : ''}`}>

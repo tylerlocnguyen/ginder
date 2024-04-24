@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+//Communicates with the database and displays any clubs that match what is searched
 const Search = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);

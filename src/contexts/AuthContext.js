@@ -3,6 +3,7 @@ import {auth} from '../firebase'
 
 const AuthContext = React.createContext()
 
+//Has all the functions to communicate with firebase and change emails, passwords, or add new users
 export function useAuth() {
     return useContext(AuthContext)
 }

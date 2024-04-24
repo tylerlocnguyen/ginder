@@ -9,7 +9,7 @@ const port = 5500;
 app.use(cors());
 app.use(express.json());
 
-
+//Sets up the search tab with express and tries to find the club on the database
 database.ready.then(() => {
     app.get('/search', async (req, res) => {
         try {

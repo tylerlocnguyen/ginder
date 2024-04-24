@@ -3,6 +3,7 @@ import { Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
+//Creates the dashboard and holds the button to go into ginder or update information
 export default function Dashboard() {
   const [error, setError] = useState('');
   const { currentUser, logout } = useAuth();

@@ -3,6 +3,7 @@ import {Form, Button, Card, Alert} from 'react-bootstrap'
 import {useAuth} from '../contexts/AuthContext'
 import {Link} from 'react-router-dom'
 
+//Sets up the forgot password tab and holds states to see email that is typed in and sends it to firebase
 export default function ForgotPassword() {
     const emailRef = useRef()
     const {resetPassword} = useAuth()

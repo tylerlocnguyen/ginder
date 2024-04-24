@@ -10,6 +10,7 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import Themes from "./Themes"
 
+//Holds the routing for all the individual links
 //<PrivateRoute exact path ="/" element = {<Dashboard/>} />
 function App() {
   return (

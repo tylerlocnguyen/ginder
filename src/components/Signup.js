@@ -3,6 +3,7 @@ import {Form, Button, Card, Alert} from 'react-bootstrap'
 import {useAuth} from '../contexts/AuthContext'
 import {Link, useNavigate} from 'react-router-dom'
 
+//Creates the sign up page and checks to make sure the passwords are valid through firebase
 export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()

@@ -3,6 +3,8 @@ import {Form, Button, Card, Alert} from 'react-bootstrap'
 import {useAuth} from '../contexts/AuthContext'
 import {Link, useNavigate} from 'react-router-dom'
 
+//Sets up the log in page and stores states about it
+//Also checks if the given email and password matches an account on firebase
 export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()

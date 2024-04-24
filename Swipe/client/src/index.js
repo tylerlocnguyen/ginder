@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Renders the app through react
 ReactDOM.render(
   <React.StrictMode>
     <Router>
