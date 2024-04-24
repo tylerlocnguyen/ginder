@@ -1,4 +1,5 @@
 # Ginder
+Alexander Calvo, Ava Vellozzi, Tyler Nguyen, Jhonathan Herrera
 
 # Things to install:
 npm install react react-dom  
