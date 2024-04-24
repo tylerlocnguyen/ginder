@@ -3,6 +3,7 @@ import SwipeFeature from './SwipeFeature';
 import axios from 'axios'; // Import axios for HTTP requests
 import ThemeSelection from './ThemeSelection';
 import './Themes.css';
+import Search from './Search';
 
 function Themes() {
   const [tab, setTab] = useState('swipe'); // State to track active tab
@@ -70,6 +71,7 @@ function Themes() {
     <span className="Themes">
       <header className="Themes-header">
         <h1>Organization Swiper</h1>
+        <Search />
         {showThemeSelection && <ThemeSelection onSelectThemes={handleSelectThemes} />}
         {!showThemeSelection && (
           <div>
