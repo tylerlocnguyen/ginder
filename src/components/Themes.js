@@ -4,6 +4,7 @@ import axios from 'axios'; // Import axios for HTTP requests
 import ThemeSelection from './ThemeSelection';
 import './Themes.css';
 import Search from './Search';
+import logo from '../public/logo.png';
 
 function Themes() {
   const [tab, setTab] = useState('swipe'); // State to track active tab
@@ -68,8 +69,9 @@ function Themes() {
   };
 
   return (
-    <div className="Themes">
+    <div style={{ backgroundColor: '#e6f7ec' }} className="Themes">
       <header className="Themes-header">
+        <img src={logo} alt="Logo" className="Themes-logo" />
         <h1>Welcome to Ginder</h1>
         <Search />
         {showThemeSelection && <ThemeSelection onSelectThemes={handleSelectThemes} />}
