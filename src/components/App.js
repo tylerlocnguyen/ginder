@@ -5,9 +5,10 @@ import { AuthProvider } from "../contexts/AuthContext";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Dashboard from "./Dashboard"
 import Login from "./Login"
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./PrivateRoute"
 import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
+import Themes from "./Themes"
 
 //<PrivateRoute exact path ="/" element = {<Dashboard/>} />
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={ <PrivateRoute> <Dashboard /> </PrivateRoute>}></Route>
               <Route path="/update-profile" element={ <UpdateProfile/>}></Route>
+              <Route path = "/themes" element={ <Themes/>}></Route>
               <Route path="/signup" element={<Signup/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/forgot-password" element={<ForgotPassword/>} />

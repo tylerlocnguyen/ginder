@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button, Alert } from 'react-bootstrap';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from './contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
@@ -27,7 +27,7 @@ export default function Dashboard() {
           {error && <Alert variant="danger">{error}</Alert>}
           <strong>Email:</strong> {currentUser.email}
           <div className="w-100 text-center mt-3">
-            <Link to="/themes" className="btn btn-primary w-100" style={{ fontSize: '1rem' }}>
+            <Link to="/choose-interests" className="btn btn-primary w-100" style={{ fontSize: '1rem' }}>
               Choose Interests
             </Link>
           </div>
