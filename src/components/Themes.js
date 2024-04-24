@@ -23,6 +23,7 @@ function Themes() {
                        selectedThemes.includes(org.Tags[1]) || 
                        selectedThemes.includes(org.Tags[2])));
         setOrganizations(filteredOrgs);
+        //console.log(filteredOrgs);
       } catch (error) {
         console.error('Error fetching organizations:', error);
       }
@@ -66,7 +67,7 @@ function Themes() {
   };
 
   return (
-    <div className="Themes">
+    <span className="Themes">
       <header className="Themes-header">
         <h1>Organization Swiper</h1>
         {showThemeSelection && <ThemeSelection onSelectThemes={handleSelectThemes} />}
@@ -109,7 +110,7 @@ function Themes() {
           </div>
         )}
       </header>
-    </div>
+    </span>
   );
 }
 

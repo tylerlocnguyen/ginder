@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import './SwipeFeature.css'; // Import CSS for styling
+import React, { useEffect } from 'react';
+import './SwipeFeature.css';
 
-
-const SwipeFeature = ({ organizations, activeIndex, setActiveIndex, onSwipeLeft, onSwipeRight }) => {
-  // Event listener for arrow keys
+const SwipeFeature = ({ organizations, activeIndex, onSwipeLeft, onSwipeRight }) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'ArrowLeft') {
@@ -15,7 +13,6 @@ const SwipeFeature = ({ organizations, activeIndex, setActiveIndex, onSwipeLeft,
 
     document.addEventListener('keydown', handleKeyDown);
 
-    // Cleanup function to remove the event listener
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
@@ -23,12 +20,12 @@ const SwipeFeature = ({ organizations, activeIndex, setActiveIndex, onSwipeLeft,
 
   return (
     <div className="swipe-container">
-      {organizations.map((org, index) => (
-        <div key={org._id} className={`card ${index === activeIndex ? 'active' : ''}`}>
-          <h2>{org.OrganizationName}</h2>
-          <p>{org.OrganizationDescription}</p>
+      {organizations[activeIndex] && (
+        <div key={organizations[activeIndex]._id} className="card">
+          <h2>{organizations[activeIndex].OrganizationName}</h2>
+          <p>{organizations[activeIndex].OrganizationDescription}</p>
         </div>
-      ))}
+      )}
     </div>
   );
 };

@@ -14,7 +14,7 @@
   width: 500px; /* Set the width of the card */
   height: 500px; /* Set the height of the card */
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: pink;
   border: 1px solid #ccc;
   display: none; /* Initially hide the card */
   color: #282c34;

@@ -4,22 +4,28 @@
   height: 100%;
   overflow: hidden;
 
-  /* Center the swipe container horizontally and vertically */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .card {
-  width: 500px; /* Set the width of the card */
-  height: 500px; /* Set the height of the card */
+  width: 500px;
+  height: 500px;
   padding: 20px;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
-  display: none; /* Initially hide the card */
-  color: #282c34;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.card.active {
-  display: block; /* Display the card if it has the active class */
-}
