@@ -62,7 +62,7 @@ const ThemeSelection = ({ onSelectThemes }) => {
 
   return (
     <div>
-      <h2>Select Themes</h2>
+      <h2>Select Your Interests</h2>
       <div className="theme-list">
         {themes.map((theme) => (
           <div key={theme}>

@@ -70,7 +70,7 @@ function Themes() {
   return (
     <div className="Themes">
       <header className="Themes-header">
-        <h1>Organization Swiper</h1>
+        <h1>Welcome to Ginder</h1>
         <Search />
         {showThemeSelection && <ThemeSelection onSelectThemes={handleSelectThemes} />}
         {!showThemeSelection && (
