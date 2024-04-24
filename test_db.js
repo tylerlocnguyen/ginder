@@ -21,6 +21,7 @@ class Database{ //class for the actual database for easy access in other parts o
 
 
     async logging(){
+        //Debugging purposes
         console.log("HERE");
     }
 
@@ -64,7 +65,8 @@ class Database{ //class for the actual database for easy access in other parts o
 
     async getbyInterest(tag){ 
         try{
-            //Stack Overflow clutched this up
+            //Stack Overflow
+            //Query with multiple items depeding on the user input
             const query = await this.collection.find({ Tags: {$in : tag} }).toArray();
             
             console.log(query); 
@@ -74,7 +76,9 @@ class Database{ //class for the actual database for easy access in other parts o
         }
     }
 
+    //This is only used once when when read the csvFile and split up the name and decriptione
     async getSecondColumnFirstRow(csvFile) {
+        
         return new Promise((resolve, reject) => {
           this.fs.readFile(csvFile, 'utf8', (err, data) => {
 
@@ -129,7 +133,8 @@ async function main(){ //main function for testing purposes
     const theme = ["Engineering","Professional/Career"];
     try{
         await database.connect(); //Make sure that the database is always connected first
-        await database.getbyInterest(theme);
+        await database.getbyInterest(theme); //query all the orgs using the user input
+        //im pretending that the variable themes is what a student selected
 
         
         console.log("DONE");
@@ -137,6 +142,7 @@ async function main(){ //main function for testing purposes
         console.error("erm", error);
         throw error;
     } finally{
+        //always make sure that it closes
         await database.close();
     }
 }
