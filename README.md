@@ -3,6 +3,7 @@ Alexander Calvo, Ava Vellozzi, Tyler Nguyen, Jhonathan Herrera
 Group 52
 
 # Things to install:
+npm install  
 npm install react react-dom  
 npm install react-scripts  
 npm install web-vitals  
