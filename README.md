@@ -1,5 +1,5 @@
 # Ginder
-Alexander Calvo, Ava Vellozzi, Tyler Nguyen, Jhonathan Herrera
+Alexander Calvo, Ava Vellozzi, Tyler Nguyen, Jhonathan Herrera  
 Group 52
 
 # Things to install:
