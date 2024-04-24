@@ -88,17 +88,6 @@ class Database{ //class for the actual database for easy access in other parts o
 
 
 const database = new Database(uri, dbName, collectionName);
-async function performDatabaseOperations() {
-    try {
-        await database.ready; // Wait for the database to connect
-        await database.updateDocuments("360BHM", ['Cultural', 'Fine Arts', 'Social and Global Change']);
-    } catch (error) {
-        console.error('Error performing database operations:', error);
-    } finally {
-        await database.close(); // Close the database connection after operations
-    }
-}
-performDatabaseOperations();
 module.exports = database;
 
 
