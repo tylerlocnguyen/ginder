@@ -26,3 +26,6 @@ REACT_APP_FIREBASE_APP_ID=1:850159423588:web:f02652d9cce876032e0f71
 
 # To Run it:
 npm start
+
+# IF WANTING TO GENERATE CSV:
+Run the swe.py to generate a csv file of all the UF clubs available
